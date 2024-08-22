@@ -4,7 +4,7 @@
 
 <template>
     <div>
-        <h2>Filtrosd</h2>
+        <h2>Filtros</h2>
     </div>
 </template>
 

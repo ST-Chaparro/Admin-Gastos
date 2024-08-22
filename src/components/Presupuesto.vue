@@ -78,8 +78,9 @@ if(presupuesto.value <= 0  || presupuesto.value === '' ) {
         text-align: center;
     }
     .presupuesto input[type="submit"] {
-        background-color: var(--azul);
+        background-color: var(--verde);
         border: none;
+        border-radius: 1.5rem;
         padding: 1rem;
         text-align: center;
         font-size: 2rem;
@@ -89,7 +90,7 @@ if(presupuesto.value <= 0  || presupuesto.value === '' ) {
         width: 100%;
     } 
     .presupuesto input[type="submit"]:hover {
-        background-color: #1048A4;
+        background-color: #7c3aed;
         cursor: pointer;
         transition: background-color 300ms ease;
     }

@@ -1,0 +1,124 @@
+<script setup>
+  import cerraModal from '../assets/img/cerrar.svg'
+
+  const emit = defineEmits(['ocultar-modal'])
+  const props = defineProps({
+    modal:{
+        type: Object,
+        required: true
+    }
+
+  })
+
+</script>
+
+<template>
+    <div class="modal">
+        <div class="cerrar-modal">
+            <img 
+                :src="cerraModal"
+                @click="$emit('ocultar-modal')"
+            />
+        </div>
+        <div 
+        class="contenedor contenedor-formulario"
+        >
+            <form 
+                class="nuevo-gasto"
+            >
+                <legend>Añadir Gastos</legend>
+                <div class="campo">
+                    <label for="nombre">Nombre Gasto:</label>
+                    <input type="text"
+                        id="nombre"
+                        placeholder="Añade el Nombre del Gasto"
+                    />
+                </div>
+                <div class="campo">
+                    <label for="Cantidad">Cantidad</label>
+                    <input type="number"
+                        id="cantidad"
+                        placeholder="Añade la cantidad del Gasto, ej. 500"
+                    />
+                </div>
+                <div class="campo">
+                    <label for="categoria">Categoria:</label>
+                    <select id="categoria">
+                        <option value="">-- Selecione --</option>
+                        <option value="ahorro"> Ahorros </option>
+                        <option value="comida"> Comida </option>
+                        <option value="casa"> Casa </option>
+                        <option value="gastos"> Gastos </option>
+                        <option value="ocio"> Ocio </option>
+                        <option value="salud"> Salud </option>
+                        <option value="suscripciones"> Suscripciones </option>
+                    </select>
+                </div>
+                <input type="submit"
+                    value="Añadir Gasto"
+                >
+            </form>
+        </div>
+    </div>
+</template>
+
+
+
+<style scoped>
+
+.modal {
+    position: absolute;
+    background-color: rgb(0 0 0 / 0.9);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.cerrar-modal {
+   position: absolute;
+   right: 3rem;
+   top: 3rem;
+}
+.cerrar-modal img {
+    cursor: pointer;
+    width: 3rem;
+}
+.nuevo-gasto{
+    margin: 10rem auto 0 auto;
+    display: grid;
+    gap: 2rem;
+
+}
+.conetenedor-formulario{
+    
+}
+.nuevo-gasto legend {
+    text-align: center;
+    color: var(--blanco);
+    font-size: 3rem;
+    font-weight: 700;
+}
+.campo {
+    display: grid;
+    gap: 2rem;
+}
+.nuevo-gasto input,
+.nuevo-gasto select {
+    background-color: var(--gris-claro);
+    border-radius: 1rem;
+    padding: 1rem;
+    border: none;
+    font-size: 2.2rem;
+}
+.nuevo-gasto label {
+   color: var(--blanco);
+   font-size: 2.5rem;
+   font-weight: 600;
+}
+.nuevo-gasto input[type="submit"] {
+    background-color: var(--verde);
+    color: var(--blanco);
+    font-weight: 700;
+    cursor: pointer;
+}
+</style>

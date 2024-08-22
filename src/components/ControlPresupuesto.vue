@@ -1,5 +1,17 @@
 <script setup>
  import imagen from '../assets/img/grafico.jpg'
+ import {formatearCantidad} from '../helpers'
+
+ const props = defineProps ({
+    presupuesto: {
+        type: Number,
+        required: true
+    },
+    disponible: {
+        type: Number,
+        required: true
+    },
+ })
 </script>
 
 <template>
@@ -15,11 +27,11 @@
             </button>
             <p>
                 <span>Presupuesto:</span>
-                $0
+                {{ formatearCantidad(presupuesto) }}
             </p>
             <p>
-                <span>Disponioble:</span>
-                $0
+                <span>Disponible:</span>
+                {{ formatearCantidad(presupuesto)}}
             </p>
             <p>
                 <span>Gastado:</span>
@@ -49,11 +61,11 @@
             align-items: center;
         }
         .dos-columnas > :first-child {
-        margin-bottom: 0;
+            margin-bottom: 0;
+        }
     }
-
     .reset-app {
-        background-color: #DB2777;
+        background-color: #dc2626;
         border: none;
         padding: 1rem;
         width: 100%;
@@ -66,9 +78,7 @@
     }
     .reset-app:hover {
         cursor: pointer;
-        background-color: #ac1a5c;
-    }
-
+        background-color: #b91c1c;
     }
     .contenedor-presupuesto {
         width: 100%;
@@ -85,7 +95,9 @@
     }
     .contenedor-presupuesto span {
         font-weight: 900;
-        color: var(--azul);
+        color: var(--azul-oscuro);
     }
+
+ 
 
 </style>

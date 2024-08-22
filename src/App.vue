@@ -1,12 +1,34 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, reactive} from 'vue';
 import Presupuesto from './components/Presupuesto.vue';
 import ControlPresupuesto from './components/ControlPresupuesto.vue';
+import Modal from './components/Modal.vue';
 
+import iconoNuevoGasto from './assets/img/nuevo-gasto.svg'
+
+const modal = reactive({
+  mostrar: false,
+  animar: false
+})
 const presupuesto = ref(0)
+const disponible = ref (0)
 
 const definirPresupuesto = (cantidad) => {
   presupuesto.value = cantidad
+  disponible.value = cantidad
+}
+const mostrarModal = () => {
+  modal.mostrar = true
+  setTimeout(() => {
+    modal.animar = true
+  }, 300)
+ 
+}
+const ocultarModal = () => {
+  modal.animar = false
+  setTimeout(() => {
+    modal.mostrar = false
+  }, 300)
 }
 
 </script>
@@ -24,16 +46,36 @@ const definirPresupuesto = (cantidad) => {
           />
           <ControlPresupuesto
             v-else
+            :presupuesto="presupuesto"
+            :disponible="disponible"
           />
       </div>
     </header>
+    <main v-if="presupuesto > 0">
+
+      <div class="crear-gasto">
+        <img 
+          :src="iconoNuevoGasto"
+          alt="Icono nuevo gasto"
+          @click="mostrarModal"
+        />
+      </div>
+
+      <Modal
+          v-if="modal.mostrar"
+          @ocultar-modal="ocultarModal"
+          :modal="modal"
+      />
+    </main>
+
   </div>
 </template>
 
 
 <style >
   :root {
-    --azul: #3b82f6;
+    --azul-oscuro: #4338ca ;
+    --verde: #16a34a;
     --blanco: #fff;
     --gris-claro: #f5f5f5;
     --gris: #94a3b8;
@@ -61,7 +103,7 @@ const definirPresupuesto = (cantidad) => {
     font-size: 3rem;
   }
   header {
-    background-color: var(--azul);
+    background-color: var(--azul-oscuro);
   }
   header h1 {
     padding: 3rem 0;
@@ -85,4 +127,15 @@ const definirPresupuesto = (cantidad) => {
     border-radius: 1.2rem;
     padding: 5rem;
   }
+  .crear-gasto {
+    position: fixed;
+    bottom: 5rem;
+    right: 5rem;
+
+  }
+  .crear-gasto img {
+    width: 5rem;
+    cursor: pointer;
+  }
+
 </style>
