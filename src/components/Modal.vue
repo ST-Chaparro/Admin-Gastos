@@ -3,10 +3,22 @@
 
   const emit = defineEmits(['ocultar-modal'])
   const props = defineProps({
-    modal:{
+    modal: {
         type: Object,
         required: true
-    }
+    },
+    nombre: {
+        type: Object,
+        required: true
+    },
+    cantidad: {
+        type: [String, Number],
+        required: true
+    },
+    categoria: {
+        type: String,
+        required: true
+    },
 
   })
 
@@ -22,6 +34,7 @@
         </div>
         <div 
         class="contenedor contenedor-formulario"
+        :class="[modal.animar ? 'animar' : 'cerrar']"
         >
             <form 
                 class="nuevo-gasto"
@@ -32,6 +45,7 @@
                     <input type="text"
                         id="nombre"
                         placeholder="Añade el Nombre del Gasto"
+                        :value="nombre"
                     />
                 </div>
                 <div class="campo">
@@ -39,11 +53,14 @@
                     <input type="number"
                         id="cantidad"
                         placeholder="Añade la cantidad del Gasto, ej. 500"
+                        :value="cantidad"
                     />
                 </div>
                 <div class="campo">
                     <label for="categoria">Categoria:</label>
-                    <select id="categoria">
+                    <select id="categoria"
+                        :value="categoria"
+                    >
                         <option value="">-- Selecione --</option>
                         <option value="ahorro"> Ahorros </option>
                         <option value="comida"> Comida </option>
@@ -83,15 +100,25 @@
     cursor: pointer;
     width: 3rem;
 }
+.contenedor-formulario {
+    transition-property: all;
+    transition-duration: 300ms;
+    transition-timing-function: ease-in;
+    opacity: 0;
+}
+.contenedor-formulario.animar {
+    opacity: 1;
+}
+.contenedor-formulario .cerrar {
+    opacity: 0;
+}
 .nuevo-gasto{
     margin: 10rem auto 0 auto;
     display: grid;
     gap: 2rem;
 
 }
-.conetenedor-formulario{
-    
-}
+
 .nuevo-gasto legend {
     text-align: center;
     color: var(--blanco);
